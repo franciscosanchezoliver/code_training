@@ -14,6 +14,7 @@ class Solution:
                 l = pivot + 1 
             else:
                 r = pivot - 1
+        return -1
 
 
 if __name__ == "__main__":

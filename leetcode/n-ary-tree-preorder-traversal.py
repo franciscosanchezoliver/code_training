@@ -28,6 +28,8 @@ class Solution:
         return output
 
     def preorder_iterative(self, root: 'Node') -> List[int]:
+
+        if not root:  return []
         
         q = deque([root])
         output = []

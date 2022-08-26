@@ -15,6 +15,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __repr__(self) -> str:
+        return str(self.val)
+
 class Walk:
 
     def preorder_recursive(
@@ -124,12 +127,12 @@ if __name__ == "__main__":
     #walker.preorder_recursive(nodo15)
     
     #print("Inorder Recursive")
-    #walker.inorder_recursive(nodo15)
+    walker.inorder_recursive(nodo15)
 
     #print("Postorder Recursive")
     #walker.postorder_recursive(nodo15)
     #print("end")
 
     #walker.iterative_preorder(nodo15)
-    walker.iterative_inorder(nodo15)
+    #walker.iterative_inorder(nodo15)
 
