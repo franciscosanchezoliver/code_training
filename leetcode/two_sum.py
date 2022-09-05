@@ -7,23 +7,51 @@ class Solution:
         nums: List[int], 
         target:int
     ) -> List[int]:
+        index_map = {}
+        for index, num in enumerate(nums):
+            searched_value = target - num 
+            if searched_value in index_map:
+                return index_map[searched_value], index_map[searched_value]
+            else:
+                index_map[num] = index
 
-        # Search if there is already a number that sums up the target amount
-        target_found_in_list = list(filter(lambda number : number == target, nums)).__len__()
-        if target_found_in_list > 0:
-            return [nums.index(target)]
 
-        # Filter numbers greater than the target. This will reduce the space of searching
-        nums = [number for number in nums if number <= target]
 
-        for first_number_index, first_number in enumerate (nums):
-            for second_number_index, second_number in enumerate(nums):
-                if first_number + second_number == target and \
-                   first_number_index != second_number_index:
-                    return [first_number_index, second_number_index]
+
+
+
+
+    def twoSum_map(
+        self, 
+        nums: List[int], 
+        target:int
+    ) -> List[int]:
+
+        sums = {}
+        for index_x, x in enumerate(nums):
+            for index_y, y in enumerate(nums):
+                if index_x != index_y:
+                    if (min(x,y) , max(x, y)) not in sums:
+                        sums[( min(x, y) , max(x, y) )] = x + y
+                        if x + y == target:
+                            return [min(index_x, index_y) ,max(index_x, index_y)]
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
     solution = Solution()
-    resultado = solution.twoSum(nums = [2, 7, 11, 15], 
-                                target= 9)
+    res = solution.twoSum(nums = [2, 7, 11, 15], 
+                          target= 9)
+    
+    assert res == [0,1]
+
+    res = solution.twoSum(nums = [3,3], 
+                          target= 6)
+    
+    assert res == [0,1]
