@@ -1,3 +1,7 @@
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
 var count_problems_done = 0
 var count_total_problems = 0 
 
@@ -13,4 +17,10 @@ for (i = 1; i < problems_table.rows.length; i++){
 console.log(count_problems_done)
 console.log(count_total_problems)
 
-document.getElementById("progress").innerHTML = count_problems_done/count_total_problems + "%"
+var percentageDone = count_problems_done/count_total_problems * 100
+percentageDone = roundToTwo(percentageDone) + "%"
+
+complete_message = "[" + count_problems_done + "/" + 
+                         count_total_problems + "] " + percentageDone
+
+document.getElementById("progress").innerHTML = complete_message 
