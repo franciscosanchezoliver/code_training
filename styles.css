@@ -4,3 +4,8 @@
 #problems_table{
     border: 1px solid;
 }
+
+.doing{
+    background-color: darkslateblue;
+    color: white;
+}
