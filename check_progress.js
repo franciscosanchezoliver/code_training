@@ -24,3 +24,8 @@ complete_message = "[" + count_problems_done + "/" +
                          count_total_problems + "] " + percentageDone
 
 document.getElementById("progress").innerHTML = complete_message 
+
+// update the progress bar
+
+var elem = document.getElementById("myBar");
+elem.style.width = percentageDone + "%";
