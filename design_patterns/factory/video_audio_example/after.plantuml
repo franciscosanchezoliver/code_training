@@ -1,0 +1,77 @@
+@startuml
+
+abstract class VideoExporter{
+   + {abstract} prepare_export(video_data) 
+   + {abstract} do_export(folder)
+}
+
+class LosslessVideoExporter{
+   + prepare_export(video_data) 
+   + do_export(folder)
+}
+class H264BPVideoExporter{
+   + prepare_export(video_data) 
+   + do_export(folder)
+}
+class H264Hi422PVideoExporter{
+   + prepare_export(video_data) 
+   + do_export(folder)
+}
+
+VideoExporter <|-- LosslessVideoExporter
+VideoExporter <|-- H264BPVideoExporter
+VideoExporter <|-- H264Hi422PVideoExporter
+
+
+abstract class AudioExporter{
+   + {abstract} prepare_export(video_data) 
+   + {abstract} do_export(folder)
+}
+class AACAudioExporter{
+   + prepare_export(video_data) 
+   + do_export(folder)
+}
+class WAVAudioExporter{
+   + prepare_export(video_data) 
+   + do_export(folder)
+}
+
+AudioExporter <|-- AACAudioExporter
+AudioExporter <|-- WAVAudioExporter
+
+abstract class ExporterFactory {
+    + {abstract} get_video_exporter(): VideoExporter
+    + {abstract} get_audio_exporter(): AudioExporter
+}
+
+class FastExporter{
+    + get_video_exporter()
+    + get_audio_exporter()
+}
+
+class HighQualityExporter{
+    + get_video_exporter()
+    + get_audio_exporter()
+}
+class MasterQualityExporter{
+    + get_video_exporter()
+    + get_audio_exporter()
+}
+
+ExporterFactory <|-- FastExporter
+ExporterFactory <|-- HighQualityExporter
+ExporterFactory <|-- MasterQualityExporter
+
+FastExporter ..> H264BPVideoExporter : <<creates>>
+FastExporter ..> AACAudioExporter : <<creates>>
+
+
+HighQualityExporter ..> H264Hi422PVideoExporter : <<creates>>
+HighQualityExporter ..> AACAudioExporter : <<creates>>
+
+
+MasterQualityExporter ..> LosslessVideoExporter
+MasterQualityExporter ..> WAVAudioExporter 
+
+
+@enduml
