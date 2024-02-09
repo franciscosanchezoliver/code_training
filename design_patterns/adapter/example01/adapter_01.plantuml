@@ -1,0 +1,33 @@
+@startuml
+
+interface IA {
+    method_a()
+}
+
+class A {
+    method_a()
+}
+
+IA <|-- A
+
+interface IB {
+    method_b()
+}
+
+class B {
+    method_b()
+}
+
+IB <|-- B
+
+
+class BAdapter {
+    + b: B
+    method_a()
+}
+
+IA <|-- BAdapter
+
+BAdapter *-- B
+
+@endulml
