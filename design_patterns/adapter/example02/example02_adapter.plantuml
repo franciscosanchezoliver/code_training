@@ -1,0 +1,39 @@
+@startuml
+
+
+interface Duck{
+    quack(): void
+    fly(): voiid
+}
+
+class MallardDuck {
+    quack(): void
+    fly(): void
+}
+
+Duck <|.. MallardDuck
+
+interface Turkey{
+    gooble(): void
+    fly(): void
+}
+
+class WildTurkey {
+    gobble(): void
+    fly(): void
+}
+
+Turkey <|.. WildTurkey  
+
+class TurkeyAdapter {
+    + turkey: Turkey
+    quack(): void
+    fly(): void
+}
+
+Duck <|.. TurkeyAdapter
+
+TurkeyAdapter *-- Turkey
+
+
+@enduml
